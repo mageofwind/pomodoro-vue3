@@ -1,0 +1,31 @@
+version: '1.0'
+
+services:
+  server:
+    image: server
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+      DB_HOST: db
+      DB_PORT: 5433
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: postgres
+      PORT: 8083
+    ports:
+      - 8083:8083
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5433:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local
