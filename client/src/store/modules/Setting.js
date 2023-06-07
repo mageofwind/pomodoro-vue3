@@ -105,7 +105,6 @@ const mutations = {
     //   currentRound: payload
     // }
     state.currentRound = payload;
-    console.log(state.currentRound);
     // state.currentRound = payload
   },
 

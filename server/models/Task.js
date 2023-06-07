@@ -2,7 +2,6 @@ const db = require('../db')
 
 class Task {
   constructor({taskname}) {
-    console.log(taskname)
     this.taskname = taskname
   }
   createTask = async () => {

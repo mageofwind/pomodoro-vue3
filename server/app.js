@@ -5,10 +5,11 @@ const mime = require('mime');
 
 const app = express();
 const router = require('./routes')
+require('./db/migrations/migrations')
 
-require('dotenv').config()
+require('dotenv').config("./.env")
 
-app.use(express.static(path.join(__dirname, 'dist')))
+app.use(express.static(path.join(__dirname, 'client')))
 app.use(cors())
 
 
@@ -17,11 +18,12 @@ app.use("/api", router)
 
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+  res.sendFile(path.resolve(__dirname, 'client', 'index.html'));
 });
 
 const PORT = process.env.PORT || 8080;
 
+console.log(PORT)
 app.listen(PORT, () => {
   console.log(`Server Started ${PORT}`);
 });

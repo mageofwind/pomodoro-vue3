@@ -200,7 +200,7 @@ const initTimer = () => {
       break;
     case "short-break":
       minutes.value = timeShortBreak.value;
-      createTimer(timeShortBreak);
+      createTimer(timeShortBreak.value);
       break;
     case "long-break":
       minutes.value = timeLongBreak.value;

@@ -94,7 +94,6 @@ let editData = reactive({ id: -1, name: "" });
 let editId = ref(null);
 
 const addRow = () => {
-  console.log(taskListData);
   if (editId.value === null) {
     editId.value = -1;
     taskListData.value.unshift({ id: -1, name: "" });
@@ -107,7 +106,6 @@ const toggleTaskList = () => {
   store.dispatch("toggleTaskList");
 };
 const editRow = (row) => {
-  console.log(row);
   editId.value = row.id;
   editData.id = row.id;
   editData.name = row.name;

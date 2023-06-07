@@ -1,91 +1,91 @@
-import Timer from './Timer'
-let timer
+import Timer from "./Timer";
+let timer;
 
 class TimerWorker {
   constructor() {
     this.onmessage = (msg) => {
       switch (msg.data.event) {
-        case 'create':
-          this.handleCreate(msg.data.min)
-          break
-        case 'pause':
-          this.handlePause()
-          break
-        case 'reset':
-          this.handleReset()
-          break
-        case 'resume':
-          this.handleResume()
-          break
-        case 'start':
-          this.handleStart()
-          break
+        case "create":
+          this.handleCreate(msg.data.min);
+          break;
+        case "pause":
+          this.handlePause();
+          break;
+        case "reset":
+          this.handleReset();
+          break;
+        case "resume":
+          this.handleResume();
+          break;
+        case "start":
+          this.handleStart();
+          break;
         default:
-          break
+          break;
       }
-    }
+    };
   }
 
   // External event handlers
 
   handleCreate(min) {
-    timer = new Timer(min)
-    timer.addEventListener('complete', this.handleTimerComplete)
-    timer.addEventListener('pause', this.handleTimerPause)
-    timer.addEventListener('reset', this.handleTimerReset)
-    timer.addEventListener('start', this.handleTimerStart)
-    timer.addEventListener('tick', this.handleTimerTick)
+    timer = new Timer(min);
+    timer.addEventListener("complete", this.handleTimerComplete);
+    timer.addEventListener("pause", this.handleTimerPause);
+    timer.addEventListener("reset", this.handleTimerReset);
+    timer.addEventListener("start", this.handleTimerStart);
+    timer.addEventListener("tick", this.handleTimerTick);
   }
 
   handlePause() {
-    if (!timer) return
-    timer.pause()
+    if (!timer) return;
+    timer.pause();
   }
 
   handleReset() {
-    if (!timer) return
-    timer.reset()
+    if (!timer) return;
+    timer.reset();
   }
 
   handleResume() {
-    if (!timer) return
-    timer.resume()
+    if (!timer) return;
+    timer.resume();
   }
 
   handleStart() {
-    if (!timer) return
-    timer.start()
+    if (!timer) return;
+    timer.start();
   }
 
   // Internal timer event handlers
 
   handleTimerComplete() {
-    self.postMessage({ event: 'complete' })
+    self.postMessage({ event: "complete" });
   }
 
   handleTimerPause() {
-    self.postMessage({ event: 'pause' })
+    self.postMessage({ event: "pause" });
   }
 
   handleTimerReset() {
-    self.postMessage({ event: 'reset' })
+    self.postMessage({ event: "reset" });
   }
 
   handleTimerStart(event) {
     self.postMessage({
-      event: 'start',
+      event: "start",
       elapsed: event.detail.time,
-      totalSeconds: event.detail.totalSeconds
-    })
+      totalSeconds: event.detail.totalSeconds,
+    });
   }
 
   handleTimerTick(event) {
     self.postMessage({
-      event: 'tick',
+      event: "tick",
       elapsed: event.detail.time,
-      totalSeconds: event.detail.totalSeconds
-    })
+      totalSeconds: event.detail.totalSeconds,
+    });
   }
 }
 
-export default TimerWorker
+export default TimerWorker;

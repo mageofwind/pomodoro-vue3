@@ -1,14 +1,13 @@
 FROM node:18-alpine
 ENV NODE_ENV=production
-WORKDIR /server/
+
+WORKDIR /
 
 COPY package.json package.json
 COPY package-lock.json package-lock.json
 
-RUN npm install
-
 COPY . .
 
-RUN npx sequelize-cli db:migrate
+RUN npm install
 
-CMD [ "node", "app.js" ]
+CMD npm start

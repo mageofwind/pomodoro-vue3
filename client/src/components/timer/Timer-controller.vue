@@ -37,7 +37,9 @@ const checkRound = () => {
 const dispatchTimer = () => {
   EventBus.emit("timer-init", {
     auto:
-      currentRound.value === "work" ? autoStartWorkTimer.value : autoStartBreakTimer.value,
+      currentRound.value === "work"
+        ? autoStartWorkTimer.value
+        : autoStartBreakTimer.value,
   });
 };
 
