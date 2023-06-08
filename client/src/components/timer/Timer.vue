@@ -130,15 +130,9 @@ import { EventBus } from "@/utils/EventBus";
 import { useStore } from "vuex";
 import { computed, onMounted, ref } from "vue";
 
+/** store **/
 const store = useStore();
 
-// const data = reactive({
-//   timerWorker: null,
-//   currentTime: 0,
-//   minutes: 1,
-//   timerActive: false,
-//   timerStarted: false
-// })
 let timerWorker = ref(null);
 let currentTime = ref(0);
 let minutes = ref(1);
@@ -156,6 +150,7 @@ const currentRoundDisplay = computed(() => {
   }
   return "";
 });
+
 const timeLongBreak = computed(() => store.getters.timeLongBreak);
 const timeShortBreak = computed(() => store.getters.timeShortBreak);
 const timeWork = computed(() => store.getters.timeWork);

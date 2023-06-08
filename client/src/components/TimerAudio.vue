@@ -36,6 +36,8 @@ const audioShortBreak = ref(null);
 const audioTick = ref(null);
 const audioWork = ref(null);
 const audioLongBreak = ref(null);
+
+/** mounted() **/
 onMounted(() => {
   EventBus.on("ready-long-break", () => {
     audioShortBreak.value.volume = volume;

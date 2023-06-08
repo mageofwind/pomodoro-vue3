@@ -21,7 +21,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div style="display: flex; padding: 10px 20px 10px 10px ">
+  <div style="display: flex; padding: 10px 20px 10px 10px">
     <el-select
       v-model="taskId"
       filterable
